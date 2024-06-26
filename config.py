@@ -24,6 +24,11 @@ ADMIN_FILE_PATH = "admin_file_path"
 ARCH_FILE_PATH = "arch_file_path"
 API_FILE_PATH = "api_file_path"
 
+# Server Config Keys
+DEFAULT_HOST = "default_host"
+DEBUG = "debug"
+PORT = "port"
+
 engine = {
     ENGINE_KNN_VAL: 3,
 }
@@ -45,7 +50,7 @@ embedding = {
 llm = {
     LLM_MODEL: "llama3",
     # LLM_MODEL: "pfmp-sage",
-    LLM_REQUEST_TIMEOUT: 120,
+    LLM_REQUEST_TIMEOUT: 1200,
     LLM_URL: "http://0.0.0.0:11434",
     LLM_PORT: "11434",
 }
@@ -54,4 +59,10 @@ data = {
     ADMIN_FILE_PATH: "data/flex-rack-admin-guide-45x-en-us.pdf",
     ARCH_FILE_PATH: "data/flex-rack-archg-4x-en-us.pdf",
     API_FILE_PATH: "data/h19515-powerflex-automation-with-rest-api.pdf"
+}
+
+server ={
+    DEFAULT_HOST: "0.0.0.0",
+    DEBUG: True,
+    PORT: 8087,
 }

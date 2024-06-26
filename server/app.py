@@ -1,6 +1,7 @@
 from flask import Flask, request
-from main import setup_query_engines
+from router.query_router import setup_query_engines
 from utils import response_utils
+import config
 
 app = Flask(__name__)
 app.config['preprocessed_data'] = None
@@ -50,5 +51,9 @@ def home():
     return "API controller app\n"
 
 
-if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+def run_server():
+    app.run(debug=config.server[config.DEBUG], port=config.server[config.PORT],
+            host=config.server[config.DEFAULT_HOST])
+
+# if __name__ == '__main__':
+    # run_server()

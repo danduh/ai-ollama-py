@@ -1,0 +1,23 @@
+version: '3'
+services:
+  router:
+    image: testsage
+    privileged: true
+    ports:
+      - "8087:8087"
+    environment:
+      - DEST_URL=http://ollama:11434
+#    depends_on:
+#      ollama:
+#        condition: service_healthy
+  ollama:
+    image: readyollama
+    ports:
+      - "11434:11434"
+#    healthcheck:
+#      test: |
+#        ollama run llama3
+#      interval: 20s
+#      timeout: 15s
+#      retries: 3
+
