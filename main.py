@@ -1,5 +1,4 @@
 import os
-
 import nest_asyncio
 import config
 import utils.response_utils as utils
@@ -8,9 +7,7 @@ from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.core import Settings
 from llama_index.core import VectorStoreIndex
 import logging
-
 import ingestion.ingest_pdf
-
 
 logging.basicConfig(level=logging.INFO)
 
@@ -25,7 +22,8 @@ def setup_query_engines():
 
     dest_url = os.getenv('DEST_URL', config.llm[config.LLM_URL])
     logging.info(f'Destination URL: {dest_url}')
-    llm = Ollama(base_url=dest_url, model=config.llm[config.LLM_MODEL], request_timeout=config.llm[config.LLM_REQUEST_TIMEOUT])
+    llm = Ollama(base_url=dest_url, model=config.llm[config.LLM_MODEL],
+                 request_timeout=config.llm[config.LLM_REQUEST_TIMEOUT])
     embed_model = HuggingFaceEmbedding(model_name=config.embedding[config.EMBEDDING_PDF_MODEL])
     Settings.llm = llm
     Settings.embed_model = embed_model
@@ -40,31 +38,28 @@ def setup_query_engines():
     # results = query_engine.query("Tell me about the powerflex architecture in short reference sds and components")
     # print(str(results))
 
-
     admin_index = VectorStoreIndex.from_documents(ingestion.ingest_pdf.docs_admin)
     admin_query_engine = admin_index.as_query_engine(streaming=config.feature_flags[config.FEATURE_FLAGS_STREAMING],
-                                                   similarity_top_k=config.engine[config.ENGINE_KNN_VAL])
+                                                     similarity_top_k=config.engine[config.ENGINE_KNN_VAL])
 
     api_index = VectorStoreIndex.from_documents(ingestion.ingest_pdf.docs_api)
     api_query_engine = api_index.as_query_engine(streaming=config.feature_flags[config.FEATURE_FLAGS_STREAMING],
-                                                     similarity_top_k=config.engine[config.ENGINE_KNN_VAL])
+                                                 similarity_top_k=config.engine[config.ENGINE_KNN_VAL])
 
     # results = query_engine.query("As an experienced engineer who know the Powerflex system and how to use it very well, Tell me How to work with the system to consume storage, give me ateps and settings for that to use, if there are prerequisites to configure, such as other powerflex storage objects or resources, reference them too in the process, be concise and informative, and help the user understand what to do step by step")
     # results = query_engine.query("Tell me How to work with the system to consume storage, give me ateps and settings for that to use, if there are prerequisites to configure, such as other powerflex storage objects or resources, reference them too in the process")
 
-
     return arch_query_engine, admin_query_engine, api_query_engine
 
+
 def test_queries():
-    if admin_engine != None:
+    if admin_engine is not None:
         logging.info(f'attempting query')
         results = admin_engine.query("im getting an error for adding a device, what are the reasons for that")
         logging.info(f'query complete')
         if config.feature_flags[config.FEATURE_FLAGS_STREAMING]:
             results.print_response_stream()
         return utils.enrich_response(results)
-
-
 
 
 if __name__ == "__main__":

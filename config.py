@@ -34,7 +34,7 @@ feature_flags = {
 }
 
 printers = {
-    PRINTERS_PROMPT_END: "===============",
+    PRINTERS_PROMPT_END: "===============\n",
     PRINTERS_PROMPT_SEPARATOR: "----------------",
 }
 
