@@ -16,17 +16,20 @@ EMBEDDING_PDF_MODEL = "pdf_model"
 # LLM Config Keys
 LLM_MODEL = "model"
 LLM_REQUEST_TIMEOUT = "request_timeout"
+LLM_URL = "llm_url"
+LLM_PORT = "llm_port"
 
 # Data Config Keys
 ADMIN_FILE_PATH = "admin_file_path"
 ARCH_FILE_PATH = "arch_file_path"
+API_FILE_PATH = "api_file_path"
 
 engine = {
     ENGINE_KNN_VAL: 3,
 }
 
 feature_flags = {
-    FEATURE_FLAGS_STREAMING: True,
+    FEATURE_FLAGS_STREAMING: False,
     FEATURE_FLAGS_REFERENCES: True,
 }
 
@@ -41,10 +44,14 @@ embedding = {
 
 llm = {
     LLM_MODEL: "llama3",
+    # LLM_MODEL: "pfmp-sage",
     LLM_REQUEST_TIMEOUT: 120,
+    LLM_URL: "http://0.0.0.0:11434",
+    LLM_PORT: "11434",
 }
 
 data = {
     ADMIN_FILE_PATH: "data/flex-rack-admin-guide-45x-en-us.pdf",
-    ARCH_FILE_PATH: "data/flex-rack-archg-4x-en-us.pdf"
+    ARCH_FILE_PATH: "data/flex-rack-archg-4x-en-us.pdf",
+    API_FILE_PATH: "data/h19515-powerflex-automation-with-rest-api.pdf"
 }
