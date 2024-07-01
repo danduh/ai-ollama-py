@@ -1,14 +1,12 @@
 import os
 import nest_asyncio
 import config
-import utils.response_utils as utils
 from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.core import Settings
 from llama_index.core import VectorStoreIndex
 import logging
 import ingestion.ingest_pdf
-import server.app as app
 
 logging.basicConfig(level=logging.INFO)
 

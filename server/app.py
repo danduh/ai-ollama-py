@@ -1,7 +1,8 @@
 from flask import Flask, request
 from router.query_router import setup_query_engines
-from utils import response_utils
+from server import response_payload
 import config
+import json
 
 app = Flask(__name__)
 app.config['preprocessed_data'] = None
@@ -25,8 +26,8 @@ with app.app_context():  # Run preprocessing when the application context is ini
 def generic_handle_data(engine_name: str):
     if request.is_json:
         generic_engine = app.config['preprocessed_data'][engine_name]  # Access preprocessed data
-        api_request = request.get_json().get('request')
-        return response_utils.enrich_response(generic_engine.query(api_request)), 200
+        api_request = build_query(request.get_json().get('context'), request.get_json().get('prompt'))
+        return response_payload.build_response(generic_engine.query(api_request)).toJSON(), 200
     else:
         return 'Request must be JSON.', 400
 
@@ -49,6 +50,9 @@ def api_engine():
 @app.route('/')
 def home():
     return "API controller app\n"
+
+def build_query(context, prompt): # Temp, for now just adds context and prompt
+    return context + prompt
 
 
 def run_server():
