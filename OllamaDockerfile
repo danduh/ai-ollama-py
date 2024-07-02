@@ -1,0 +1,7 @@
+# use this only to build an image that cant pull llama3 and is prebundled with one
+
+FROM ollama/ollama
+# this assumes you have the llama3 blobs and manifests
+COPY ./.ollama/* /root/.ollama/
+
+RUN ollama pull llama3
