@@ -1,9 +1,7 @@
 import config
-from server import response_payload
 
 
 # use this on a query engine query result to enrich it with references
-
 def enrich_response(response):
     output = []
     if not config.feature_flags[config.FEATURE_FLAGS_STREAMING]:
@@ -17,4 +15,3 @@ def enrich_response(response):
             output.append(f"Score:\t {node.score:.3f}")
     output.append(config.printers[config.PRINTERS_PROMPT_END])
     return "\n".join(output)
-

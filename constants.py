@@ -1,0 +1,1 @@
+BGE_EMBED_DIM = 384

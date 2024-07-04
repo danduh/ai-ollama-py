@@ -34,7 +34,7 @@ class QueryResponse:
 
 def build_response(response):
     sources = []
-    answer = str(response)
+    answer = str(response).replace('\\n', '\n')
     built_response = QueryResponse(answer, sources)
     if config.feature_flags[config.FEATURE_FLAGS_REFERENCES]:
         for node in response.source_nodes:

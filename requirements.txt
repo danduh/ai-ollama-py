@@ -1,6 +1,7 @@
 llama-index
 llama-index-llms-ollama
 llama-index-embeddings-huggingface
+llama-index-vector-stores-postgres
 llama-parse
 nest-asyncio
 pip~=22.3.1
