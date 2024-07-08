@@ -67,7 +67,7 @@ def build_query(context, prompt):  # Temp, for now just adds context and prompt
 
 def run_server():
     app.run(debug=config.server[config.DEBUG], port=config.server[config.PORT],
-            host=config.server[config.DEFAULT_LLM_HOST])
+            host=config.server[config.DEFAULT_LLM_HOST], use_reloader=False)
 
 # if __name__ == '__main__':
 # run_server()

@@ -23,9 +23,9 @@ LLM_PORT = "llm_port"
 
 # Data Config Keys
 DATA_DIR = "data_dir"
-ADMIN_FILE_PATH = "admin_file_path"
-ARCH_FILE_PATH = "arch_file_path"
-API_FILE_PATH = "api_file_path"
+ADMIN_DIR_PATH = "admin_file_path"
+ARCH_DIR_PATH = "arch_file_path"
+API_DIR_PATH = "api_file_path"
 
 # Server Config Keys
 DEFAULT_LLM_HOST = "default_host"
@@ -40,6 +40,8 @@ CHUNK_OVERLAP = "chunk_overlap"
 DB_URL = "db_url"
 DB_NAME = "db_name"
 ADMIN_TABLE_NAME = "admin_table_name"
+API_TABLE_NAME = "api_table_name"
+ARC_TABLE_NAME = "arc_table_name"
 CONSOLIDATED_TABLE_NAME = "consolidated_table_name"
 
 
@@ -51,7 +53,7 @@ feature_flags = {
     FEATURE_FLAGS_STREAMING: False,
     FEATURE_FLAGS_REFERENCES: True,
     SHOW_INGESTION_PROGRESS: True,
-    USE_VECTOR_DB: True,
+    USE_VECTOR_DB: False,
 
 }
 
@@ -74,9 +76,9 @@ llm = {
 
 data = {
     DATA_DIR: "data/",
-    ADMIN_FILE_PATH: "data/flex-rack-admin-guide-45x-en-us.pdf",
-    ARCH_FILE_PATH: "data/flex-rack-archg-4x-en-us.pdf",
-    API_FILE_PATH: "data/h19515-powerflex-automation-with-rest-api.pdf"
+    ADMIN_DIR_PATH: "data/admin/",
+    ARCH_DIR_PATH: "data/architecture/",
+    API_DIR_PATH: "data/api/"
 }
 
 server ={
@@ -94,5 +96,7 @@ db ={
     DB_URL: "postgresql://postgres:postgres@0.0.0.0:5432",
     DB_NAME: "vector_db",
     ADMIN_TABLE_NAME: "admin_data",
+    API_TABLE_NAME: "api_data",
+    ARC_TABLE_NAME: "arc_data",
     CONSOLIDATED_TABLE_NAME: "consolidated_data"
 }

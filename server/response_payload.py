@@ -1,6 +1,9 @@
 import json
 from dataclasses import dataclass, asdict
 import config
+import utils.response_utils
+
+
 @dataclass
 class Metadata:
     page_label: str
@@ -34,7 +37,7 @@ class QueryResponse:
 
 def build_response(response):
     sources = []
-    answer = str(response).replace('\\n', '\n')
+    answer = utils.response_utils.clean_response(response)
     built_response = QueryResponse(answer, sources)
     if config.feature_flags[config.FEATURE_FLAGS_REFERENCES]:
         for node in response.source_nodes:

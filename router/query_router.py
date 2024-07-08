@@ -23,7 +23,6 @@ def setup_document_vector_index(directory_reader, storage_context=None, show_pro
                                            storage_context=storage_context,
                                            show_progress=show_progress)
 
-
 def setup_query_engines():
     # to allow nested event loops
     nest_asyncio.apply()
@@ -40,9 +39,12 @@ def setup_query_engines():
     # Settings.chunk_overlap = config.ingestion[config.CHUNK_OVERLAP]
 
     logging.info("indexing arch")
-    arch_index = VectorStoreIndex.from_documents(ingestion.ingest_pdf.docs_arch)
-    arch_query_engine = arch_index.as_query_engine(streaming=config.feature_flags[config.FEATURE_FLAGS_STREAMING],
-                                                   similarity_top_k=config.engine[config.ENGINE_KNN_VAL])
+    arch_index = setup_document_vector_index(ingestion.ingest_pdf.docs_arch,
+                                             storage_context=repo.pgvector.arc_storage_context,
+                                             show_progress=config.feature_flags[config.SHOW_INGESTION_PROGRESS])
+    arch_query_engine = arch_index.as_query_engine(
+        streaming=config.feature_flags[config.FEATURE_FLAGS_STREAMING],
+        similarity_top_k=config.engine[config.ENGINE_KNN_VAL])
 
     logging.info("indexing admin")
     admin_index = setup_document_vector_index(ingestion.ingest_pdf.docs_admin,
@@ -51,9 +53,12 @@ def setup_query_engines():
     admin_query_engine = admin_index.as_query_engine(streaming=config.feature_flags[config.FEATURE_FLAGS_STREAMING],
                                                      similarity_top_k=config.engine[config.ENGINE_KNN_VAL])
     logging.info("indexing api")
-    api_index = VectorStoreIndex.from_documents(ingestion.ingest_pdf.docs_api)
-    api_query_engine = api_index.as_query_engine(streaming=config.feature_flags[config.FEATURE_FLAGS_STREAMING],
-                                                 similarity_top_k=config.engine[config.ENGINE_KNN_VAL])
+    api_index = setup_document_vector_index(ingestion.ingest_pdf.docs_api,
+                                            storage_context=repo.pgvector.api_storage_context,
+                                            show_progress=config.feature_flags[config.SHOW_INGESTION_PROGRESS])
+    api_query_engine = api_index.as_query_engine(
+        streaming=config.feature_flags[config.FEATURE_FLAGS_STREAMING],
+        similarity_top_k=config.engine[config.ENGINE_KNN_VAL])
 
     logging.info("indexing consolidated")
     consolidated_index = setup_document_vector_index(ingestion.ingest_pdf.docs_consolidated,

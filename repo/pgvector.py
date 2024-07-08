@@ -19,5 +19,9 @@ def get_vector_store(table_name: str) -> PGVectorStore:
         embed_dim=constants.BGE_EMBED_DIM,
     )
 
+
 admin_storage_context = StorageContext.from_defaults(vector_store=get_vector_store(config.db[config.ADMIN_TABLE_NAME]))
-consolidated_storage_context = StorageContext.from_defaults(vector_store=get_vector_store(config.db[config.CONSOLIDATED_TABLE_NAME]))
+api_storage_context = StorageContext.from_defaults(vector_store=get_vector_store(config.db[config.API_TABLE_NAME]))
+arc_storage_context = StorageContext.from_defaults(vector_store=get_vector_store(config.db[config.ARC_TABLE_NAME]))
+consolidated_storage_context = StorageContext.from_defaults(
+    vector_store=get_vector_store(config.db[config.CONSOLIDATED_TABLE_NAME]))
