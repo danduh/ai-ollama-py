@@ -7,6 +7,7 @@ FEATURE_FLAGS_STREAMING = "streaming"
 FEATURE_FLAGS_REFERENCES = "references"
 SHOW_INGESTION_PROGRESS = "show_ingestion_progress"
 USE_VECTOR_DB = "use_vector_db"
+CONFIGURABLE_PATH = "configurable_path"
 
 # Printers Config Keys
 PRINTERS_PROMPT_END = "prompt_end"
@@ -54,6 +55,7 @@ feature_flags = {
     FEATURE_FLAGS_REFERENCES: True,
     SHOW_INGESTION_PROGRESS: True,
     USE_VECTOR_DB: False,
+    CONFIGURABLE_PATH: True,
 
 }
 
