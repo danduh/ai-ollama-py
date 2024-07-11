@@ -12,3 +12,4 @@ services:
       - POSTGRES_PASSWORD=ChangeMe
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    container_name: pgvector

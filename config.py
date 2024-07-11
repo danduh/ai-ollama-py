@@ -5,6 +5,9 @@ ENGINE_KNN_VAL = "knn_val"
 # Feature Flags Config Keys
 FEATURE_FLAGS_STREAMING = "streaming"
 FEATURE_FLAGS_REFERENCES = "references"
+SHOW_INGESTION_PROGRESS = "show_ingestion_progress"
+USE_VECTOR_DB = "use_vector_db"
+CONFIGURABLE_PATH = "configurable_path"
 
 # Printers Config Keys
 PRINTERS_PROMPT_END = "prompt_end"
@@ -20,14 +23,28 @@ LLM_URL = "llm_url"
 LLM_PORT = "llm_port"
 
 # Data Config Keys
-ADMIN_FILE_PATH = "admin_file_path"
-ARCH_FILE_PATH = "arch_file_path"
-API_FILE_PATH = "api_file_path"
+DATA_DIR = "data_dir"
+ADMIN_DIR_PATH = "admin_file_path"
+ARCH_DIR_PATH = "arch_file_path"
+API_DIR_PATH = "api_file_path"
 
 # Server Config Keys
-DEFAULT_HOST = "default_host"
+DEFAULT_LLM_HOST = "default_host"
 DEBUG = "debug"
 PORT = "port"
+
+# Ingestion Config Keys
+CHUNK_SIZE = "chunk_size"
+CHUNK_OVERLAP = "chunk_overlap"
+
+# DB Config Keys
+DB_URL = "db_url"
+DB_NAME = "db_name"
+ADMIN_TABLE_NAME = "admin_table_name"
+API_TABLE_NAME = "api_table_name"
+ARC_TABLE_NAME = "arc_table_name"
+CONSOLIDATED_TABLE_NAME = "consolidated_table_name"
+
 
 engine = {
     ENGINE_KNN_VAL: 3,
@@ -36,6 +53,10 @@ engine = {
 feature_flags = {
     FEATURE_FLAGS_STREAMING: False,
     FEATURE_FLAGS_REFERENCES: True,
+    SHOW_INGESTION_PROGRESS: True,
+    USE_VECTOR_DB: False,
+    CONFIGURABLE_PATH: True,
+
 }
 
 printers = {
@@ -56,13 +77,28 @@ llm = {
 }
 
 data = {
-    ADMIN_FILE_PATH: "data/flex-rack-admin-guide-45x-en-us.pdf",
-    ARCH_FILE_PATH: "data/flex-rack-archg-4x-en-us.pdf",
-    API_FILE_PATH: "data/h19515-powerflex-automation-with-rest-api.pdf"
+    DATA_DIR: "data/",
+    ADMIN_DIR_PATH: "data/admin/",
+    ARCH_DIR_PATH: "data/architecture/",
+    API_DIR_PATH: "data/api/"
 }
 
 server ={
-    DEFAULT_HOST: "0.0.0.0",
+    DEFAULT_LLM_HOST: "0.0.0.0",
     DEBUG: True,
     PORT: 8087,
+}
+
+ingestion ={
+    CHUNK_SIZE: 1024,
+    CHUNK_OVERLAP: 50,
+}
+
+db ={
+    DB_URL: "postgresql://postgres:postgres@0.0.0.0:5432",
+    DB_NAME: "vector_db",
+    ADMIN_TABLE_NAME: "admin_data",
+    API_TABLE_NAME: "api_data",
+    ARC_TABLE_NAME: "arc_data",
+    CONSOLIDATED_TABLE_NAME: "consolidated_data"
 }

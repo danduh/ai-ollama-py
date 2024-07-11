@@ -1,9 +1,8 @@
 import config
-from server import response_payload
+import json
 
 
 # use this on a query engine query result to enrich it with references
-
 def enrich_response(response):
     output = []
     if not config.feature_flags[config.FEATURE_FLAGS_STREAMING]:
@@ -18,3 +17,7 @@ def enrich_response(response):
     output.append(config.printers[config.PRINTERS_PROMPT_END])
     return "\n".join(output)
 
+def clean_response(response):
+    response = str(response).replace('\\n', '\n')
+    response = json.dumps(response)
+    return response

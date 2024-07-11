@@ -1,6 +1,7 @@
 llama-index
 llama-index-llms-ollama
 llama-index-embeddings-huggingface
+llama-index-vector-stores-postgres
 llama-parse
 nest-asyncio
 pip~=22.3.1
@@ -13,3 +14,4 @@ typing_extensions~=4.12.2
 packaging~=24.1
 requests~=2.32.3
 Flask~=3.0.3
+sqlalchemy
