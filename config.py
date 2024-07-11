@@ -51,8 +51,8 @@ engine = {
 }
 
 feature_flags = {
-    FEATURE_FLAGS_STREAMING: False,
-    FEATURE_FLAGS_REFERENCES: True,
+    FEATURE_FLAGS_STREAMING: True,
+    FEATURE_FLAGS_REFERENCES: False,
     SHOW_INGESTION_PROGRESS: True,
     USE_VECTOR_DB: False,
     CONFIGURABLE_PATH: True,
