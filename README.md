@@ -64,5 +64,55 @@ query example
 curl -X POST -H "Content-Type: application/json" -d '{"context": "block ui","prompt": "How can i create a volume using the ui"}' http://0.0.0.0:8087/api/admin_engine  
 ```
 
+## Use with Continue plugin
+1. Add the config file
+```bash
+vim ~/.continue/config.ts 
+```
+2. paste the following
+```typescript
+export function modifyConfig(config) {
+  config.models.push({
+    options: {
+      title: "Sage",
+      model: "customModel",
+    },
+    streamChat: async function* (prompt, options) {
+       const requestBody = {
+        prompt: prompt
+      };
+
+      // Make the API call
+      const response = await fetch('http://0.0.0.0:8087/api/consolidated_engine', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // Add other headers if needed
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (!response.ok) {
+        throw new Error(`API call failed: ${response.statusText}`);
+      }
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder('utf-8');
+      let done = false;
+
+      while (!done) {
+        const { value, done: readerDone } = await reader.read();
+        done = readerDone;
+        const chunk = decoder.decode(value, { stream: !done });
+        // Yield each part of the completion as it is streamed
+        yield chunk;
+      }
+    },
+  });
+  return config;
+}
+```
+3. Restart your IDE
+4. Choose the Sage model to work with Continue
+
 ### Contact ###  
  [Tomer Gafsou](mailto:tomer.gafsou@dell.com)

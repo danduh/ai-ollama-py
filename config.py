@@ -47,7 +47,7 @@ CONSOLIDATED_TABLE_NAME = "consolidated_table_name"
 
 
 engine = {
-    ENGINE_KNN_VAL: 3,
+    ENGINE_KNN_VAL: 5,
 }
 
 feature_flags = {
