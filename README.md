@@ -113,6 +113,7 @@ export function modifyConfig(config) {
 ```
 3. Restart your IDE
 4. Choose the Sage model to work with Continue
+![Screenshot 2024-07-11 165454](https://media.eos2git.cec.lab.emc.com/user/13931/files/718615be-fe9b-4748-ba5a-f99b474e86a7)
 
 ### Contact ###  
  [Tomer Gafsou](mailto:tomer.gafsou@dell.com)
