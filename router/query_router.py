@@ -21,7 +21,8 @@ def setup_document_vector_index(directory_reader, storage_context=None, show_pro
     storage_context = storage_context if config.feature_flags[config.USE_VECTOR_DB] else None
     return VectorStoreIndex.from_documents(directory_reader,
                                            storage_context=storage_context,
-                                           show_progress=show_progress)
+                                           show_progress=show_progress,
+                                           context_prompt=config.llm[config.SYSTEM_PROMPT])
 
 def setup_query_engines():
     # to allow nested event loops

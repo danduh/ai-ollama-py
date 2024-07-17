@@ -1,6 +1,7 @@
 
 # Engine Config Keys
 ENGINE_KNN_VAL = "knn_val"
+SYSTEM_PROMPT = "system_prompt"
 
 # Feature Flags Config Keys
 FEATURE_FLAGS_STREAMING = "streaming"
@@ -47,7 +48,7 @@ CONSOLIDATED_TABLE_NAME = "consolidated_table_name"
 
 
 engine = {
-    ENGINE_KNN_VAL: 5,
+    ENGINE_KNN_VAL: 4,
 }
 
 feature_flags = {
@@ -74,6 +75,12 @@ llm = {
     LLM_REQUEST_TIMEOUT: 1200,
     LLM_URL: "http://0.0.0.0:11434",
     LLM_PORT: "11434",
+    SYSTEM_PROMPT: "You are a chatbot, fluent in Powerflex technology and terminology, able to have normal interactions, as well as talk"
+        " about the design and code."
+        "Here are the relevant documents for the context:\n"
+        "{context_str}"
+        "\nInstruction: use the context above, to interact and help the user and supply context or code depending on "
+                   "the request."
 }
 
 data = {
