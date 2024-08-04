@@ -1,7 +1,7 @@
-# pfmp-sage
+# ai-ollama-py
 
 ## Project Description
-pfmp-sage is a Flask server built with Python 3.10 that processes JSON payloads containing `context` and `prompt` strings. The server interacts with Ollama on port 11434 and exposes three endpoints:
+ai-ollama-py is a Flask server built with Python 3.10 that processes JSON payloads containing `context` and `prompt` strings. The server interacts with Ollama on port 11434 and exposes three endpoints:
 
 - `/api/admin_engine`
 - `/api/arc_engine`
@@ -66,3 +66,31 @@ curl -X POST -H "Content-Type: application/json" -d '{"context": "block ui","pro
 
 ### Contact ###  
  [Tomer Gafsou](mailto:tomer.gafsou@dell.com)
+ 
+
+## LOCAL TO BE REMOVED
+```shell
+export INGEST_DIR=/home/danduh/dev/mist-portal-nrwl/apps/portal-e2e/
+python3 main.py
+----
+OLLAMA_HOST=0.0.0.0 ollama serve
+```
+
+```json
+
+{
+  "model": "gpt-4-turbo",
+  "temperature": 0.1,
+  "messages": [
+    {
+      "role": "system",
+      "content": ""
+    },
+    {
+      "role": "user",
+      "content": "Create Page Object class with name . \n INPUT>>:  <<INPUT  \n undefined"
+    }
+  ]
+}
+
+```

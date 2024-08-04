@@ -69,7 +69,7 @@ embedding = {
 }
 
 llm = {
-    LLM_MODEL: "llama3",
+    LLM_MODEL: "llama3.1",
     # LLM_MODEL: "pfmp-sage",
     LLM_REQUEST_TIMEOUT: 1200,
     LLM_URL: "http://0.0.0.0:11434",
